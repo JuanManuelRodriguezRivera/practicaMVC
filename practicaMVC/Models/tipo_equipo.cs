@@ -6,7 +6,7 @@ namespace practicaMVC.Models
     {
         [Key]
         [Display(Name = "ID tipo de equipo")]
-        public int? id_tipo_equipo { get; set; }
+        public int id_tipo_equipo { get; set; }
 
         [Display(Name = "Descripcion")]
         public string? descripcion { get; set; }

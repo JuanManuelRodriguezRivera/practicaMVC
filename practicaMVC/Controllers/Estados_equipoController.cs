@@ -21,20 +21,20 @@ namespace practicaMVC.Controllers
         // GET: Estados_equipo
         public async Task<IActionResult> Index()
         {
-              return _context.estado_equipo != null ? 
-                          View(await _context.estado_equipo.ToListAsync()) :
+              return _context.estados_equipo != null ? 
+                          View(await _context.estados_equipo.ToListAsync()) :
                           Problem("Entity set 'equipoDbContext.estado_equipo'  is null.");
         }
 
         // GET: Estados_equipo/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.estado_equipo == null)
+            if (id == null || _context.estados_equipo == null)
             {
                 return NotFound();
             }
 
-            var estados_equipo = await _context.estado_equipo
+            var estados_equipo = await _context.estados_equipo
                 .FirstOrDefaultAsync(m => m.id_estados_equipo == id);
             if (estados_equipo == null)
             {
@@ -69,12 +69,12 @@ namespace practicaMVC.Controllers
         // GET: Estados_equipo/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.estado_equipo == null)
+            if (id == null || _context.estados_equipo == null)
             {
                 return NotFound();
             }
 
-            var estados_equipo = await _context.estado_equipo.FindAsync(id);
+            var estados_equipo = await _context.estados_equipo.FindAsync(id);
             if (estados_equipo == null)
             {
                 return NotFound();
@@ -120,12 +120,12 @@ namespace practicaMVC.Controllers
         // GET: Estados_equipo/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.estado_equipo == null)
+            if (id == null || _context.estados_equipo == null)
             {
                 return NotFound();
             }
 
-            var estados_equipo = await _context.estado_equipo
+            var estados_equipo = await _context.estados_equipo
                 .FirstOrDefaultAsync(m => m.id_estados_equipo == id);
             if (estados_equipo == null)
             {
@@ -140,14 +140,14 @@ namespace practicaMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int? id)
         {
-            if (_context.estado_equipo == null)
+            if (_context.estados_equipo == null)
             {
                 return Problem("Entity set 'equipoDbContext.estado_equipo'  is null.");
             }
-            var estados_equipo = await _context.estado_equipo.FindAsync(id);
+            var estados_equipo = await _context.estados_equipo.FindAsync(id);
             if (estados_equipo != null)
             {
-                _context.estado_equipo.Remove(estados_equipo);
+                _context.estados_equipo.Remove(estados_equipo);
             }
             
             await _context.SaveChangesAsync();
@@ -156,7 +156,7 @@ namespace practicaMVC.Controllers
 
         private bool estados_equipoExists(int? id)
         {
-          return (_context.estado_equipo?.Any(e => e.id_estados_equipo == id)).GetValueOrDefault();
+          return (_context.estados_equipo?.Any(e => e.id_estados_equipo == id)).GetValueOrDefault();
         }
     }
 }

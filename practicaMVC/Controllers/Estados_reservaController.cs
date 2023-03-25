@@ -35,7 +35,7 @@ namespace practicaMVC.Controllers
             }
 
             var estados_reserva = await _context.estados_reserva
-                .FirstOrDefaultAsync(m => m.estados_res_id == id);
+                .FirstOrDefaultAsync(m => m.estado_res_id == id);
             if (estados_reserva == null)
             {
                 return NotFound();
@@ -55,7 +55,7 @@ namespace practicaMVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("estados_res_id,estado")] estados_reserva estados_reserva)
+        public async Task<IActionResult> Create([Bind("estado_res_id,estado")] estados_reserva estados_reserva)
         {
             if (ModelState.IsValid)
             {
@@ -87,9 +87,9 @@ namespace practicaMVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int? id, [Bind("estados_res_id,estado")] estados_reserva estados_reserva)
+        public async Task<IActionResult> Edit(int? id, [Bind("estado_res_id,estado")] estados_reserva estados_reserva)
         {
-            if (id != estados_reserva.estados_res_id)
+            if (id != estados_reserva.estado_res_id)
             {
                 return NotFound();
             }
@@ -103,7 +103,7 @@ namespace practicaMVC.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!estados_reservaExists(estados_reserva.estados_res_id))
+                    if (!estados_reservaExists(estados_reserva.estado_res_id))
                     {
                         return NotFound();
                     }
@@ -126,7 +126,7 @@ namespace practicaMVC.Controllers
             }
 
             var estados_reserva = await _context.estados_reserva
-                .FirstOrDefaultAsync(m => m.estados_res_id == id);
+                .FirstOrDefaultAsync(m => m.estado_res_id == id);
             if (estados_reserva == null)
             {
                 return NotFound();
@@ -156,7 +156,7 @@ namespace practicaMVC.Controllers
 
         private bool estados_reservaExists(int? id)
         {
-          return (_context.estados_reserva?.Any(e => e.estados_res_id == id)).GetValueOrDefault();
+          return (_context.estados_reserva?.Any(e => e.estado_res_id == id)).GetValueOrDefault();
         }
     }
 }

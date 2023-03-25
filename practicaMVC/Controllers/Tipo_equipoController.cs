@@ -21,20 +21,20 @@ namespace practicaMVC.Controllers
         // GET: Tipo_equipo
         public async Task<IActionResult> Index()
         {
-              return _context.tipo_Equipos != null ? 
-                          View(await _context.tipo_Equipos.ToListAsync()) :
-                          Problem("Entity set 'equipoDbContext.tipo_Equipos'  is null.");
+              return _context.tipo_equipo != null ? 
+                          View(await _context.tipo_equipo.ToListAsync()) :
+                          Problem("Entity set 'equipoDbContext.tipo_equipo'  is null.");
         }
 
         // GET: Tipo_equipo/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.tipo_Equipos == null)
+            if (id == null || _context.tipo_equipo == null)
             {
                 return NotFound();
             }
 
-            var tipo_equipo = await _context.tipo_Equipos
+            var tipo_equipo = await _context.tipo_equipo
                 .FirstOrDefaultAsync(m => m.id_tipo_equipo == id);
             if (tipo_equipo == null)
             {
@@ -69,12 +69,12 @@ namespace practicaMVC.Controllers
         // GET: Tipo_equipo/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.tipo_Equipos == null)
+            if (id == null || _context.tipo_equipo == null)
             {
                 return NotFound();
             }
 
-            var tipo_equipo = await _context.tipo_Equipos.FindAsync(id);
+            var tipo_equipo = await _context.tipo_equipo.FindAsync(id);
             if (tipo_equipo == null)
             {
                 return NotFound();
@@ -87,7 +87,7 @@ namespace practicaMVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int? id, [Bind("id_tipo_equipo,descripcion,estado")] tipo_equipo tipo_equipo)
+        public async Task<IActionResult> Edit(int id, [Bind("id_tipo_equipo,descripcion,estado")] tipo_equipo tipo_equipo)
         {
             if (id != tipo_equipo.id_tipo_equipo)
             {
@@ -120,12 +120,12 @@ namespace practicaMVC.Controllers
         // GET: Tipo_equipo/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.tipo_Equipos == null)
+            if (id == null || _context.tipo_equipo == null)
             {
                 return NotFound();
             }
 
-            var tipo_equipo = await _context.tipo_Equipos
+            var tipo_equipo = await _context.tipo_equipo
                 .FirstOrDefaultAsync(m => m.id_tipo_equipo == id);
             if (tipo_equipo == null)
             {
@@ -138,25 +138,25 @@ namespace practicaMVC.Controllers
         // POST: Tipo_equipo/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int? id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.tipo_Equipos == null)
+            if (_context.tipo_equipo == null)
             {
-                return Problem("Entity set 'equipoDbContext.tipo_Equipos'  is null.");
+                return Problem("Entity set 'equipoDbContext.tipo_equipo'  is null.");
             }
-            var tipo_equipo = await _context.tipo_Equipos.FindAsync(id);
+            var tipo_equipo = await _context.tipo_equipo.FindAsync(id);
             if (tipo_equipo != null)
             {
-                _context.tipo_Equipos.Remove(tipo_equipo);
+                _context.tipo_equipo.Remove(tipo_equipo);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool tipo_equipoExists(int? id)
+        private bool tipo_equipoExists(int id)
         {
-          return (_context.tipo_Equipos?.Any(e => e.id_tipo_equipo == id)).GetValueOrDefault();
+          return (_context.tipo_equipo?.Any(e => e.id_tipo_equipo == id)).GetValueOrDefault();
         }
     }
 }
